@@ -41,3 +41,6 @@ source 'https://rubygems.org'
 
  # Bootstrap
  gem 'bootstrap-sass'
+
+ # Devise
+gem 'devise'
