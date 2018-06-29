@@ -48,3 +48,5 @@ gem 'devise'
 
 # figaro
 gem 'figaro'
+
+gem 'faker'

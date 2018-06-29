@@ -5,6 +5,7 @@ class ApplicationsController < ApplicationController
 
   def show
     @application = Application.find(params[:id])
+    @events = Event.where(application_id: @application.id).group_by(&:name)
   end
 
   def new
@@ -16,9 +17,7 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @application = Application.new
-    @application.name = params[:application][:name]
-    @application.url = params[:application][:url]
+    @application = Application.new(application_params)
     @application.user_id = current_user.id
 
     if @application.save
@@ -43,8 +42,7 @@ class ApplicationsController < ApplicationController
 
 def update
   @application = Application.find(params[:id])
-  @application.name = params[:application][:name]
-  @application.url = params[:application][:url]
+  @application.assign_attributes(application_params)
 
   if @application.save
     flash[:notice] = "Application was updated."

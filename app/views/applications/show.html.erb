@@ -3,6 +3,33 @@
 <div class="row">
   <div class="col-md-8">
     <p class="lead">URL: <%= @application.url %></p>
+    <p>EVENTS:</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">
+            Event name
+          </th>
+          <th scope="col">
+            # of events
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @events.each do |ev| %>
+          <tr>
+            <td>
+              <%= ev[0] %>
+            </td>
+            <td>
+              <%= ev[1].length %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+
   </div>
   <div class="col-md-4">
     <%= link_to "Edit Application", edit_application_path, class: 'btn btn-success' %>
