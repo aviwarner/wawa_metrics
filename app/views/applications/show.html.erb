@@ -27,8 +27,10 @@
           </tr>
         <% end %>
       </tbody>
-
     </table>
+    <%= pie_chart @application.events.group(:name).count %>
+    <%= line_chart @application.events.group_by_day(:created_at).count %>
+
 
   </div>
   <div class="col-md-4">

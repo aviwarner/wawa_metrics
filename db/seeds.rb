@@ -40,10 +40,11 @@ end
 
 applications = Application.all
 
-1000.times do
+1500.times do
   Event.create!(
     name: 'event #' + Faker::Number.non_zero_digit,
-    application: applications.sample
+    application: applications.sample,
+    created_at: Faker::Date.backward(14)
   )
 end
 

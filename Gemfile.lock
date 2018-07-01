@@ -48,6 +48,7 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
+    chartkick (2.3.5)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
     debug_inspector (0.0.3)
@@ -66,6 +67,8 @@ GEM
       thor (~> 0.14)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    groupdate (4.0.1)
+      activesupport (>= 4.2)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -177,9 +180,11 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  chartkick
   devise
   faker
   figaro
+  groupdate
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
@@ -195,4 +200,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

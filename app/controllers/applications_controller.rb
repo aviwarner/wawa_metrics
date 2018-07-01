@@ -5,6 +5,7 @@ class ApplicationsController < ApplicationController
 
   def show
     @application = Application.find(params[:id])
+    @event_collection = Event.where(application_id: @application.id)
     @events = Event.where(application_id: @application.id).group_by(&:name)
   end
 

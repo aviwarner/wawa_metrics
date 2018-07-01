@@ -20,6 +20,10 @@ source 'https://rubygems.org'
    gem 'web-console', '~> 2.0'
  end
 
+gem 'groupdate'
+ gem "chartkick"
+
+
  # Use Puma as the app server
  gem 'puma', '~> 3.0'
  # Use SCSS for stylesheets
