@@ -4,16 +4,28 @@ An analytics service that tracks website traffic (it's not like google has built
 
 Built on Rails, with a client-side Javascript snippet.
 
-* Rails v 4.2.5
+### Usage
 
-* Configuration
+Add the following snippet to your application's Javascript file (ie application.js)
 
-* Database creation
+```
+var wawametrics = {};
 
-* Database initialization
+wawametrics.report = function(eventName) {
+  var event = { event: { name: eventName } };
+  var request = new XMLHttpRequest();
+  request.open("POST", "http://localhost:3000/api/events", true);
+  request.setRequestHeader('Content-Type', 'application/json');
+  console.log(event);
+  request.send(JSON.stringify(event));
+}
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+Call on HTML pages using:
+```
+<a href="/example" onclick="wawametrics.report('EXAMPLE link clicked')">
+```
+or
+```
+<script>wawametrics.report('EXAMPLE page loaded');</script>
+```
