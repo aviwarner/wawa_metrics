@@ -1,4 +1,6 @@
 class ApplicationsController < ApplicationController
+  before_action :authorize_user, except: [:new, :create, :index]
+
   def index
     @applications = Application.where(user_id: current_user.id)
   end
@@ -41,21 +43,29 @@ class ApplicationsController < ApplicationController
     end
   end
 
-def update
-  @application = Application.find(params[:id])
-  @application.assign_attributes(application_params)
+  def update
+    @application = Application.find(params[:id])
+    @application.assign_attributes(application_params)
 
-  if @application.save
-    flash[:notice] = "Application was updated."
-    redirect_to @application
-  else
-    flash.now[:alert] = "There was an error saving the application. Please try again."
-    render :edit
+    if @application.save
+      flash[:notice] = "Application was updated."
+      redirect_to @application
+    else
+      flash.now[:alert] = "There was an error saving the application. Please try again."
+      render :edit
+    end
   end
-end
 
   private
   def application_params
     params.require(:application).permit(:name, :url)
+  end
+
+  def authorize_user
+    application = Application.find(params[:id])
+    unless current_user == application.user
+      flash[:alert] = "You don't have permission to view this application."
+      redirect_to applications_path
+    end
   end
 end
