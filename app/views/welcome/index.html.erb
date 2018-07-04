@@ -1,2 +1,27 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<container>
+  <h1>Wawa-Metrics</h1>
+  <h5>An easy-to-use web analytics service.</h5>
+  <p>
+    Add the following snippet to your application's Javascript file (ie application.js)
+
+    <pre>
+      <code>
+        var wawametrics = {};
+
+        wawametrics.report = function(eventName) {
+          var event = { event: { name: eventName } };
+          var request = new XMLHttpRequest();
+          request.open("POST", "http://dry-brook-78331.herokuapp.com/api/events", true);
+          request.setRequestHeader('Content-Type', 'application/json');
+          console.log(event);
+          request.send(JSON.stringify(event));
+        }
+      </code>
+    </pre>
+
+    <h5>Call on HTML pages using:</h5>
+    <code>&lt;a href="/example" onclick="wawametrics.report('EXAMPLE link clicked')"&gt;</code><br />
+    or<br />
+    <code>&lt;script&gt;wawametrics.report('EXAMPLE page loaded');&lt;/script&gt;</code>
+  </p>
+</container>
