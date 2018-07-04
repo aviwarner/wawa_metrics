@@ -1,7 +1,14 @@
-<h1><%= @application.name %></h1>
+
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-5">
+    <h1>
+      <%= @application.name %>
+      <small>
+        <%= link_to "", edit_application_path, class: 'fa fa-edit no-decor' %>
+        <%= link_to "", @application, method: :delete, class: 'fa fa-trash no-decor', data: { confirm: 'Are you sure you want to delete this application?' } %>
+      </small>
+    </h1>
     <p class="lead">URL: <%= @application.url %></p>
     <p>EVENTS:</p>
     <table class="table">
@@ -17,24 +24,36 @@
       </thead>
       <tbody>
         <% @events.each do |ev| %>
-          <tr>
-            <td>
-              <%= ev[0] %>
-            </td>
-            <td>
-              <%= ev[1].length %>
-            </td>
-          </tr>
+        <tr>
+          <td>
+            <%= ev[0] %>
+          </td>
+          <td>
+            <%= ev[1].length %>
+          </td>
+        </tr>
         <% end %>
       </tbody>
     </table>
-    <%= pie_chart @application.events.group(:name).count %>
-    <%= line_chart @application.events.group_by_day(:created_at).count %>
-
-
   </div>
-  <div class="col-md-4">
-    <%= link_to "Edit Application", edit_application_path, class: 'btn btn-success' %>
-    <%= link_to "Delete Application", @application, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this application?' } %>
+  <div class="col-md-7">
+    <div class="card text-center">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Event Breakdown</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Timeline</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <%= pie_chart @application.events.group(:name).count %>
+        <%= line_chart @application.events.group_by_day(:created_at).count %>
+      </div>
+    </div>
+
+
   </div>
 </div>

@@ -45,7 +45,7 @@ gem 'groupdate'
  end
 
  # Bootstrap
- gem 'bootstrap-sass'
+ gem 'bootstrap', '~> 4.1.1'
 
  # Devise
 gem 'devise'
@@ -54,3 +54,5 @@ gem 'devise'
 gem 'figaro'
 
 gem 'faker'
+
+gem "font-awesome-rails"
